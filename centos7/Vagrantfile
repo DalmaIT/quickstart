@@ -1,0 +1,27 @@
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
+
+Vagrant.configure("2") do |config|
+    config.vm.box = "dalmait/centos7"
+    # config.vm.box_version = "0.1.6"
+
+  # (Virtualbox)
+  config.vm.provider :virtualbox do |vb|
+    vb.gui = false
+    vb.memory = 1024
+    vb.cpus = 1
+  end
+
+  # (VMware Desktop)
+  config.vm.provider :vmware_desktop do |vmware|
+    vmware.gui = false
+    vmware.vmx["memsize"] = 1024
+    vmware.vmx["numvcpus"] = 1
+  end
+
+  config.vm.provision "shell", inline: <<-SHELL
+    echo ""
+    echo "THIS IS AN EXAMPLE PROVISION SHELL, ENJOY YOURSELF!"
+  SHELL
+
+end
